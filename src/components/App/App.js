@@ -4,7 +4,8 @@ import './App.css';
 import HistoryPage from '../../pages/HistoryPage';
 import StartPage from '../../pages/StartPage';
 import SettingsPage from '../../pages/SettingsPage';
-import {Route,Switch} from "react-router-dom"
+import {connect} from 'react-redux';
+import {Route, Switch} from "react-router-dom"
 
 
 const App = ({ history, commits}) => {
@@ -13,15 +14,19 @@ const App = ({ history, commits}) => {
             <Normalize/>
             <Switch>
                 <Route history={history} path='/settings' component = {SettingsPage}/>
-                <Route path="/history" component = {HistoryPage}/>
-                <Route path="/" component = {StartPage}/>              
+                <Route path="/">
+                    {commits.length ? <HistoryPage/> : <StartPage/>}
+                </Route>                
             </Switch> 
         </div>     
     )
 }
 
+const mapStateToProps = ({commits}) => {
+    return {commits};
+}
 
-export default App;
+export default connect(mapStateToProps)(App);
 
 
 

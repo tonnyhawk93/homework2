@@ -4,6 +4,8 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Settings from '../components/Settings/Settings';
 import SetButton from '../components/SetButton/SetButton';
+import {connect} from 'react-redux';
+import {hideError} from '../store/actions';
 
 
 const StartPage = ({error, hideError}) => {
@@ -21,7 +23,15 @@ const StartPage = ({error, hideError}) => {
     )
 }
 
-export default StartPage;
+const mapStateToProps = ({error}) => {
+    return {error};
+  }
+const mapDispatchToProps = (dispatch) => {
+    return {
+      hideError: () => dispatch(hideError())
+    }
+  }
+export default connect(mapStateToProps, mapDispatchToProps)(StartPage);
 
 
 
