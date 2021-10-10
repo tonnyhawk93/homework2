@@ -1,0 +1,11 @@
+.TextFieldSmall {
+    width: 52px;
+    height: 36px;
+    padding: 11px 13px 10px 13px;
+    margin: 0 8px;
+}
+
+.TextFieldSmall_container {
+    display: flex;
+    align-items: baseline;
+}

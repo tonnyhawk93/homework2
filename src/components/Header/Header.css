@@ -1,0 +1,60 @@
+header {
+    width: 100%;   
+    padding: 10px 0px;
+}
+.Header_container{
+    max-width: 824px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.Header_btnGroop {
+    display: flex;
+}
+
+.Header_btnGroop :nth-child(2){
+    margin-left: 8px;
+}
+
+.Header_logo {
+   color : var(--gray-primary);
+   margin: 0;       
+   font-weight: bold;
+   font-size: 24px;
+   line-height: 30px;
+}
+
+.Header_path {
+    color : var(--balck);
+    margin: 0;        
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px; 
+}
+
+@media (max-width: 520px) {
+    header {
+        padding: 12px 16px; 
+    }
+    .Header_logo {
+        font-size: 18px;
+    }
+    .Header_path {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .Header_btnGroop .SetButton.big{
+        width: 28px;
+        height: 28px;  
+    }
+
+    .Header_btnGroop .SetButton.big i{
+        margin: 0; 
+    }
+    .Header_btnGroop span{
+        display: none;    
+    }
+}

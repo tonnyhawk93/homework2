@@ -1,0 +1,36 @@
+.SetButton {   
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    background: var(--gray-btn);
+    border-radius: 4px;
+    padding: 8px;
+    border: none;
+    cursor: pointer;    
+}
+
+.SetButton i { 
+    font-size: 10px;  
+    margin-right: 5px;
+}
+
+.SetButton.big{    
+    width: 95px;
+    height: 28px;
+}
+
+.SetButton.small{      
+    width: 28px;
+    height: 28px;
+}
+
+.SetButton.small i {   
+    margin: 0;
+}
+
+@media (max-width: 520px) {
+    .SetButton.big{    
+        width: 100%;
+    }
+    
+}
