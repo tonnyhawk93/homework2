@@ -11,22 +11,9 @@ function reducer(state, action) {
         };   
         case 'FORM_SUBMITED': return {
             ...state, 
-            repository: action.repository,
-            command: action.command,
-            branch: action.branch,
-            synTime: action.synTime,
-        };   
-        case 'FORM_ERROR': return { 
-            ...state,
-            error : true
+            repository: action.repository
         };
-        case 'HIDE_ERROR': return { 
-            ...state,
-            error : false
-        };  
         default: return state;
     }
 }
-
-
 export default reducer;

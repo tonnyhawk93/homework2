@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import './TextFieldSmall.css'
 
-const TextFieldSmall = ({pre, post, inputs, set, keyFor}) => { 
-  const [input, setInput] = useState(''); 
-
-  const isNum = (e) => {
-    return !isNaN(e.target.value) && e.target.value !== 'e'
+const TextFieldSmall = ({pre, post, isImportant = false, set, keyFor}) => {
+  
+  const inputRef = useRef('');
+  
+  const isNum = (value) => {
+    return !isNaN(value) && value !== 'e'
   }
 
-
-  oninput = (e) => {
-    if(isNum(e)) {
-      set({...inputs, [keyFor] : e.target.value})
-      setInput(e.target.value)
-    }    
+  const onInput = (e) => {
+    e.preventDefault()
+    if(isNum(e.target.value)) {
+      inputRef.current.value = e.target.value;
+      set(keyFor, {content: inputRef.current, isImportant}); 
+    }else {
+      inputRef.current.value = inputRef.current.value.slice(0, -1);
+    }
   }
   return (
     <div className = 'TextFieldSmall_container'>
         <label>{pre}</label>
-        <input className = 'TextFieldSmall' value = {input} onInput = {oninput}></input>
+        <input className = 'TextFieldSmall' ref={inputRef} onInput = {onInput}/>
         <label>{post}</label>  
     </div> 
   )

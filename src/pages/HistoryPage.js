@@ -4,17 +4,18 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Card from '../components/Card/Card';
 import SetButton from '../components/SetButton/SetButton';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import Popup from '../components/Popup/Popup';
 import Btn from '../components/Btn/Btn';
 import TextField from '../components/TextField/TextField';
-import {hideError} from '../store/actions';
 
 
-const HistoryPage = ({commits, repository, error, hideError}) => {
-    if(error) hideError();
+const HistoryPage = () => {
+    const commits = useSelector(state => state.commits);
+    const repository = useSelector(state => state.repository);
     let[numberToShow, setnumberToShow] = useState(9);
     let[Modal, setModal] = useState(false);
+
     let Cards = commits.map(data => <Card data = {data} key = {data.id}/>);
 
     function show(num, item) {
@@ -52,16 +53,6 @@ const HistoryPage = ({commits, repository, error, hideError}) => {
         </>     
     )
 }
-
-const mapStateToProps = ({commits, repository, error}) => {
-    return {commits, repository, error};
-  }
-const mapDispatchToProps = (dispatch) => {
-    return {
-      hideError: () => dispatch(hideError())
-    }
-  }
-  
-export default connect(mapStateToProps, mapDispatchToProps)(HistoryPage);
+export default HistoryPage;
 
 

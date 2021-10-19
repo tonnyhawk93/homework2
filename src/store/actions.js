@@ -14,21 +14,9 @@ export const downloadEnd = (commits) => {
     }    
 } 
 
-export const formSubmited = (formData) => {
+export const formSubmited = (repository) => {
     return {
         type: 'FORM_SUBMITED',
-        ...formData
-    }    
-}
-
-export const formError = () => {
-    return {
-        type: 'FORM_ERROR'
-    }    
-}
-
-export const hideError = () => {
-    return {
-        type: 'HIDE_ERROR'
+        repository
     }    
 }

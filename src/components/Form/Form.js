@@ -1,95 +1,101 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import './Form.css';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import WithBuildHistoryService from '../../hoc/WithBuildHistoryService';
-import { downloadBegin, downloadEnd, formError, formSubmited, hideError} from '../../store/actions';
+import * as actions from '../../store/actions';
 import { useHistory } from "react-router-dom";
 import Btn from '../Btn/Btn';
 import TextField from '../TextField/TextField';
 import TextFieldSmall from '../TextFieldSmall/TextFieldSmall';
-       
 
-const Form = ({error, BuildHistoryService, downloadBegin, downloadEnd, formError, formSubmited, hideError}) => {
 
+const Form = ({ BuildHistoryService, inputsTextArr, inputsNumArr }) => {
+  const dispatch = useDispatch();
+  const { downloadBegin, downloadEnd, formSubmited } = bindActionCreators({ ...actions }, dispatch);
   let history = useHistory();
-  
+
+  const [isFormError, setFormError] = useState(false);
+  const inputs = useRef({});
+
+  const set = (name, content)  => {
+    if(isFormError) setFormError(false);
+    inputs.current[name] = content;
+}
+  useEffect(() => {
+    let fields = {}
+    inputsTextArr.forEach(input => {fields[input.key] = {content: '', isImportant: input.isImportant}});
+    inputsNumArr.forEach(input => {fields[input.key] = {content: '', isImportant: input.isImportant}});
+    inputs.current = fields;
+  }, [inputsTextArr, inputsNumArr])
+
+  const isValide = (inputs) => {
+    for(let value of Object.values(inputs)) {
+      if(value.isImportant && value.content === '') return false
+    }
+    return true;
+  }
+
   const loadData = () => {
-      downloadBegin();
-      BuildHistoryService.getData().then(data => {
-        downloadEnd(data);
-        history.push('/');
-      })
-      .catch(err => {
-        formError();
-        downloadEnd([])
-      });
-  }
-
-
-  const[inputs, setInput] = useState(
-    {
-        repository: '',
-        command: '',
-        branch: '',
-        synTime: ''
+    downloadBegin();
+    BuildHistoryService.getData().then(data => {
+      downloadEnd(data);
+      history.push('/');
     })
-  
-  
-  const isValide = () => {
-    if(inputs.repository.length && inputs.command.length) return true;
-    return false    
   }
-
-  const showError = (e) => {
+ 
+  const submitForm = (e) => {
     e.preventDefault();
-    formError();
+    if (isValide(inputs.current)) {
+      formSubmited(inputs.current.repository.content);
+      loadData();
+    } else {
+      setFormError(true);
+    }
   }
-
-  const submit = (e) => {
-    e.preventDefault();
-    formSubmited(inputs);
-    loadData();
-  }
-  
 
   return (
     <div>
       <div className='Form_header '>
-        <h2 className = {error ? 'Form_error' : ''}>Settings</h2>
+        <h2 className={isFormError ? 'Form_error' : ''}>Settings</h2>
         <h3>Configure repository connection and synchronization settings.</h3>
       </div>
-      <form className = 'Form' onChange = {hideError}>
+      <form className='Form' onSubmit={submitForm} >
         <div className='Form_fields'>
-          <TextField label = 'GitHub repository' set = {setInput} inputs = {inputs} placeholder = 'user-name/repo-name' isImportant = {true} keyFor = 'repository' key = 'repository'/>
-          <TextField label = 'Build command' set = {setInput} inputs = {inputs} placeholder = 'npm ci / npm run build' isImportant = {true} keyFor = 'command' key = 'command'/>
-          <TextField label = 'Main branch' set = {setInput} inputs = {inputs} placeholder = 'master' keyFor = 'branch' key = 'branch'/>
+
+          {inputsTextArr.map(input => {
+            return (
+              <TextField
+                label={input.label}
+                keyFor={input.key}
+                key={input.key}
+                placeholder={input.placeholder}
+                set = {set}
+                isImportant={input.isImportant}
+              />)
+          })}
         </div>
         <div className='Form_fieldsSmall'>
-          <TextFieldSmall pre = 'Synchronize every' set = {setInput} inputs = {inputs} post = 'minutes' keyFor = 'synTime' key = 'synTime'/>
+          {inputsNumArr.map(input => {
+            return (
+              <TextFieldSmall
+                pre={input.pre}
+                post={input.post}
+                keyFor={input.key}
+                key={input.key}
+                set = {set}
+              />)
+          })}
         </div>
         <div className='Form_buttonsGroup'>
-          <Btn type = 'action' text = 'Save'  key = 'Save' fun = {isValide() ? submit : showError}/> 
-          <Btn type = 'control' text = 'Cancel'  key = 'Cancel' href = '/'/>
+          <Btn type='action' text='Save' key='Save' />
+          <Btn type='control' text='Cancel' key='Cancel' href='/' />
         </div>
       </form>
     </div>
   )
 }
 
-const mapStateToProps = (state) => {
-  return { ...state };
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    downloadBegin: () => dispatch(downloadBegin()),
-    downloadEnd: (data) => dispatch(downloadEnd(data)),
-    formError: () => dispatch(formError()),
-    formSubmited: (inputs) => dispatch(formSubmited(inputs)),
-    hideError: () => dispatch(hideError())
-  }
-}
-
-export default WithBuildHistoryService()(connect(mapStateToProps, mapDispatchToProps)(Form));
+export default WithBuildHistoryService()(Form);
 
 
