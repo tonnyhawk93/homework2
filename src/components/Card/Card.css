@@ -1,0 +1,137 @@
+.Card {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    min-height: 68px;
+    width: 100%;
+    padding: 12px 24px 12px 56px;
+    background: var(--white);
+    box-shadow: 0px 0px 1px var(--shadow-gray);
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.Card:hover {
+    box-shadow:  0px 2px 8px var(--shadow-gray);
+    cursor: pointer;
+}
+
+.Card_right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.Card_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.Card_header {
+    display: flex;
+    align-items: center;
+}
+.Card_icon {
+    position: absolute;
+    top: 13px;
+    left: 25px
+}
+
+.Card_icon i {
+    font-size: 21px;
+}
+
+.Card_id {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.Card_id.ok {    
+    color: var(--green-ok);
+}
+
+.Card_id.error {    
+    color: var(--red-error);
+}
+
+.Card_id.pending {    
+    color: var(--orange-panding);
+}
+.Card_text {
+    font-size: 15px;
+    line-height: 20px;
+}
+.Card_hash {
+    color: var(--gray-primary);
+}
+.Card_footer {
+    display: flex;
+}
+.Card_commit{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.Card_commit i{
+    margin-right: 5px;
+}
+.Card_autor{
+    display: flex;
+    align-items: center;
+}
+
+.Card_autor i{
+    margin-right: 5px;
+}
+.Card_date{    
+    color: var(--gray-primary); 
+}
+
+.Card_time{    
+    color: var(--gray-primary); 
+}
+
+.Card_date i{  
+    font-size: 16px;
+}
+
+
+.Card_time i{  
+    font-size: 16px;
+}
+
+@media (max-width: 600px) {
+    .Card{
+        flex-direction: column;
+    }
+
+    .Card_left {
+        flex-direction: row;
+        justify-content: start;
+        margin-top: 8px;
+    }
+
+    .Card_left :nth-child(2){
+        margin-left: 9px;
+    }
+
+    .Card_footer {
+        flex-direction: column;
+        border-bottom: 1px solid var(--gray-footer); 
+        margin-top: 8px;   
+    }
+
+    .Card_message {
+        display: flex;
+        flex-direction: column;
+    }
+    .Card_autor {
+        margin: 8px 0px;    
+    }
+    .Card_id {
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+}

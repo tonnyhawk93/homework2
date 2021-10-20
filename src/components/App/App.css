@@ -1,0 +1,122 @@
+:root {
+  --gray-btn: #E6E6E6;
+  --gray-hover: #DBDBDB;
+  --gray-focus: #B3B3B3;
+  --gray-btn-disabled: #F2F2F2;
+  --gray-secondary: #7F7F7F;
+  --gray-input-bg: #FFFFFF;
+  --gray-input-border: #D9D9D9;
+  --gray-primary: #7F8285;
+  --gray-footer: #F0F2F3;;
+  --gray-icon: #CCCCCC;
+  --yellow-btn: #FFCC00;
+  --yellow-hover: #F2C200;
+  --yellow-focus: #B38F00;
+  --red-error: #FF3333;
+  --green-ok: #00b341;
+  --orange-panding: #ff9a00;
+  --white: #FFFFFF;
+  --balck: #000000;
+  --shadow-gray: rgba(67, 68, 69, 0.3);
+  --shadow-black: rgba(0, 0, 0, 0.4);
+}
+
+
+
+
+@font-face {font-family: "YS Text";
+    src: url("../../fonts/YsText/23a02e8af5ef33a9b496dd524401550f.eot"); /* IE9*/
+    src: url("../../fonts/YsText/23a02e8af5ef33a9b496dd524401550f.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../../fonts/YsText/23a02e8af5ef33a9b496dd524401550f.woff2") format("woff2"), /* chrome、firefox */
+    url("../../fonts/YsText/23a02e8af5ef33a9b496dd524401550f.woff") format("woff"), /* chrome、firefox */
+    url("../../fonts/YsText/23a02e8af5ef33a9b496dd524401550f.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url("../../fonts/YsText/23a02e8af5ef33a9b496dd524401550f.svg#YS Text Regular Regular") format("svg"); /* iOS 4.1- */
+}
+
+@font-face {
+    font-family: 'YS-icons';
+    src:  url('../../icons/YS-icons.eot?68pjf');
+    src:  url('../../icons/YS-icons.eot?68pjf#iefix') format('embedded-opentype'),
+      url('../../icons/YS-icons.ttf?68pjf') format('truetype'),
+      url('../../icons/YS-icons.woff?68pjf') format('woff'),
+      url('../../icons/YS-icons.svg?68pjf#YS-icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+  
+  .icon {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'YS-icons' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-calendar:before {
+    content: "\e900";
+    color: var(--gray-icon);
+  }
+  .icon-clear:before {
+    content: "\e901";
+    color: var(--gray-icon);
+  }
+  .icon-clock:before {
+    content: "\e902";
+    color: var(--gray-icon);
+  }
+  .icon-code-commit:before {
+    content: "\e903";
+    color: var(--gray-icon);
+  }
+  .icon-cog:before {
+    content: "\e904";
+  }
+  .icon-error:before {
+    content: "\e905";
+    color: var(--red-error);
+  }
+  .icon-ok:before {
+    content: "\e906";
+    color: var(--green-ok);
+  }
+  .icon-pending:before {
+    content: "\e907";
+    color: var(--orange-panding);
+  }
+  .icon-play:before {
+    content: "\e908";
+  }
+  .icon-rebuild:before {
+    content: "\e909";
+  }
+  .icon-user:before {
+    content: "\e90a";
+    color: var(--gray-primary);  
+  }
+  
+  * {
+    font-family: "YS Text";
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+.App {
+  position: relative;
+  z-index: 1;
+}
+
+a {
+  text-decoration: none;
+}
+
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}

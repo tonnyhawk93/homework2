@@ -1,0 +1,45 @@
+button.Btn {
+    border-radius: 4px;
+    padding: 0px 20px;
+    font-size: 13px;
+    border: none;
+    line-height: 36px;
+}
+
+button.Btn:hover {
+    cursor: pointer;
+}
+
+button.Btn.control {
+    background-color: var(--gray-btn);
+}
+
+button.Btn:hover.control {
+    background-color: var(--gray-hover);
+}
+
+button.Btn.action {    
+    background: var(--yellow-btn);
+}
+
+button.Btn:hover.action   {    
+    background: var(--yellow-hover);
+}
+
+button.Btn:focus.action   { 
+    box-shadow: inset 0px 0px 0px 2px var(--yellow-focus);
+}
+
+button.Btn:focus.control   { 
+    box-shadow: inset 0px 0px 0px 2px var(--gray-focus);
+}
+
+button.Btn:hover.disabled {
+    cursor: unset;
+}
+
+button.Btn.disabled{
+    background: var(--gray-btn-disabled);
+    color: var(--gray-secondary);
+    opacity: 0.5; 
+}

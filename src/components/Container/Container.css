@@ -1,0 +1,17 @@
+.container {
+    position: relative;
+    max-width: 824px;
+    margin: 0 auto;
+    min-height: calc(100vh - 82px);
+    padding: 8px 0px 20px 0px;
+}
+
+.hidden {
+    overflow: hidden;
+}
+@media (max-width: 520px) {
+    .container {
+        min-height: calc(100vh - 118px);
+        padding: 8px 16px 20px 16px;
+    }
+}

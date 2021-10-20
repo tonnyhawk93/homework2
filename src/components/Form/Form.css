@@ -1,0 +1,72 @@
+.Form_header {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.Form_header h2{
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 20px;
+    margin: 0;
+}
+
+.Form_header h3{
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--gray-primary);
+    margin: 0;
+    margin-top: 8px;
+}
+
+h2.Form_error::after {
+    content: "   Ошибка! Введены неверные  данные.";
+    color: var(--red-error);
+    width: auto;
+    font-size: 15px;
+}
+
+.Form {
+    margin-top: 22px;
+}
+
+.Form_fieldsSmall {
+    margin-top: 20px;
+}
+
+.Form_fields .TextField {
+    margin-top: 18px;
+}
+
+.Form_buttonsGroup{
+    margin-top: 24px;
+}
+
+.Form_buttonsGroup :nth-child(2){
+    margin-left: 8px;
+}
+
+@media (max-width: 520px) {
+    .Form_buttonsGroup{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .Form_buttonsGroup button{
+        width: 100%;
+    }
+
+    .Form_buttonsGroup :nth-child(2){
+        margin-left: 0px;
+        margin-top: 12px;
+    }
+
+    .Form {
+        margin-top: 14px;
+    }
+    .Form_fieldsSmall {
+        margin-top: 16px;
+    }
+}
